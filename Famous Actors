@@ -1,0 +1,39 @@
+
+CREATE TABLE Actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT,
+    age INTEGER,
+    nationality TEXT);
+    
+INSERT INTO Actors (full_name, age, nationality) VALUES ("John Krasinski", 43, "US");
+INSERT INTO Actors (full_name, age, nationality) VALUES ("Gal Gadot", 37, "Israel");
+INSERT INTO Actors (full_name, age, nationality) VALUES ("Mindy Kaling", 43, "US");
+INSERT INTO Actors (full_name, age, nationality) VALUES ("Ryan Reynolds", 46, "Canada");
+INSERT INTO Actors (full_name, age, nationality) VALUES ("Paul Rudd", 53, "US");
+
+CREATE table Projects (
+    project_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        Movie_Title TEXT,
+    TV_Title TEXT);
+    
+INSERT INTO projects (project_id, movie_title, tv_title) VALUES (1, "Leatherheads", "The Office");
+INSERT INTO projects  (project_id, movie_title, tv_title) VALUES (2, "Wonder Woman", "Entourage");
+INSERT INTO projects  (project_id, movie_title, tv_title) VALUES (3, "Oceans 8", "The Office");
+INSERT INTO projects (project_id, movie_title, tv_title) VALUES (4, "Deadpool", "Hillside");
+INSERT INTO projects  (project_id, movie_title, tv_title) VALUES (5, "Antman", "Friends");
+
+select actors.full_name, projects.movie_title, Projects.tv_title from actors 
+join projects
+on actors.id = projects.project_id
+where projects.tv_title="The Office";
+
+select actors.full_name, projects.movie_title, Projects.tv_title from actors 
+join projects
+on actors.id = projects.project_id
+where actors.nationality="US";
+
+select actors.full_name, projects.movie_title, actors.age 
+from actors 
+join projects
+on actors.id = projects.project_id
+where actors.age >= 45;
