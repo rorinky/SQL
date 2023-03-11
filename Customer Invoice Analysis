@@ -15,32 +15,33 @@ LEFT JOIN chinook.customers as cust
 on inv.CustomerId = cust.CustomerId 
 WHERE inv.BillingCountry = 'Brazil';
 
-#4. 
+#4. Employees who are Sales agents
 SELECT * FROM chinook.Employees
 WHERE Title = "Sales Support Agent" ;
 
-#5. 
-SELECT DISTINCT BillingCountry FROM chinook.Invoices ;
+#5. Distinct Countries sold to
+SELECT DISTINCT BillingCountry 
+FROM chinook.Invoices ;
 
-#6.
+#6. Invoices associated with each sales agent
 SELECT emp.LastName, emp.Firstname, inv.InvoiceId
 FROM chinook.Employees emp 
 JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
 JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
 
-#7. 
+#7. The Invoice Total, Customer name, Country, and Sales Agent for all invoices
 SELECT emp.LastName, emp.Firstname, cust.FirstName, cust.LastName, cust.Country, inv.total
 FROM chinook.employees emp 
 JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
 JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
 
-#8. 
-SELECT COUNT(*)
+#8. How many invoices in 2009?
+SELECT COUNT(*) as "total inv 09"
 FROM chinook.Invoices
 WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
 
-#9. 
-SELECT SUM(Total)
+#9. What are the Total Sales made in 2009?
+SELECT SUM(Total) as "Total Sales"
 FROM chinook.Invoices
 WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
 
